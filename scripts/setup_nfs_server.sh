@@ -19,6 +19,7 @@ mkdir -p $MOODLE_DIRECTORY
 mkdir -p $MOODLE_DATA_DIRECTORY
 # Le quitamos el dueño al dirextorio
 sudo chown nobody:nogroup $MOODLE_DIRECTORY
+sudo chown nobody:nogroup $MOODLE_DATA_DIRECTORY
 
 # Copiamos nuestro exports personalizado a /etc/exports
 cp ../exports/exports /etc/exports
