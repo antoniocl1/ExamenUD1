@@ -6,6 +6,9 @@ set -ex
 # Importamos el archivo de variables
 source .env
 
+# modulo para reescribir
+a2enmod rewrite
+
 # Configurar parametro max_input_vars
 sed -i "s/;max_input_vars = 1000/max_input_vars = 5000/" /etc/php/8.3/apache2/php.ini
 sed -i "s/;max_input_vars = 1000/max_input_vars = 5000/" /etc/php/8.3/cli/php.ini
