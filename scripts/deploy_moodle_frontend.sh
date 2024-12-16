@@ -20,7 +20,7 @@ rm -rf /tmp/moodle-4.3.1.zip*
 wget https://github.com/moodle/moodle/archive/refs/tags/v4.3.1.zip -P /tmp
 
 # Damos permisos de ejecucióna WP-CLI
-chmod +x /tmp/moodle-4.3.1.zip
+chmod +x /tmp/v4.3.1.zip
 
 # Eliminamos instalaciones previas de Moodle en /var/www/html
 rm -rf $MOODLE_DIRECTORY/*
@@ -29,7 +29,9 @@ rm -rf $MOODLE_DIRECTORY/*
 apt install unzip -y
 
 # Descomprimimos el zip a /var/www/html
-unzip /tmp/moodle-4.3.1.zip -d $MOODLE_DIRECTORY
+unzip /tmp/v4.3.1.zip -d /tmp
+
+mv /tmp/moodle-4.3.1/* $MOODLE_DIRECTORY
 
 # Eliminamos el zip porque ya lo hemos descomprimido
 rm -rf /$MOODLE_DIRECTORY/v4.3.1.zip 
@@ -39,7 +41,7 @@ chown -R root $MOODLE_DIRECTORY
 chmod -R 0755 $MOODLE_DIRECTORY
 
 # Creamos el directorio donde guardaremos el Moodle Data
-mkdir $MOODLE_DATA_DIRECTORY
+mkdir -p $MOODLE_DATA_DIRECTORY
 chmod 0777 $MOODLE_DATA_DIRECTORY
 
 # Instalación de Moodle con CLI
