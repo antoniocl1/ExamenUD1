@@ -25,7 +25,10 @@ cp ../exports /etc/exports
 
 # Reemplazamos el valor de la plantilla de /etc/exports
 sed -i "s#CLIENT_IP#$CLIENT_IP#" /etc/exports
-sed -i "s#WORDPRESS_DIRECTORY#$WORDPRESS_DIRECTORY#" /etc/exports
+sed -i "s#MOODLE_DIRECTORY#$MOODLE_DIRECTORY#" /etc/exports
+
+sed -i "s#CLIENT_IP#$CLIENT_IP#" /etc/exports
+sed -i "s#MOODLE_DIRECTORY#$MOODLE_DATA_DIRECTORY#" /etc/exports
 
 # Reiniciamos el servicio de NFS
 systemctl restart nfs-kernel-server

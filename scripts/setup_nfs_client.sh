@@ -15,7 +15,8 @@ apt upgrade -y
 apt install nfs-common -y
 
 # Montamos el directorio
-sudo mount $SERVER_IP:$WORDPRESS_DIRECTORY $WORDPRESS_DIRECTORY
+sudo mount $SERVER_IP:$MOODLE_DIRECTORY $MOODLE_DIRECTORY
+sudo mount $SERVER_IP:$MOODLE_DATA_DIRECTORY $MOODLE_DATA_DIRECTORY
 
 # Cambiamos la variable de /etc/fstab
 echo "$SERVER_IP:$WORDPRESS_DIRECTORY $WORDPRESS_DIRECTORY nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab
