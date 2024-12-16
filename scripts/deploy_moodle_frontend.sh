@@ -15,12 +15,16 @@ sed -i "s/;max_input_vars = 1000/max_input_vars = 5000/" /etc/php/8.3/cli/php.in
 
 # Eliminamos descargas previas de Moodle
 rm -rf /tmp/v4.3.1.zip*
+rm -rf $MOODLE_DIRECTORY/*
+rm -rf $MOODLE_DATA_DIRECTORY*
+
+# Cambiamos el propietario y el grupo al directorio /var/www/html/ y moodledata
+chown -R www-data:www-data $MOODLE_DIRECTORY
+chown -R 755 $MOODLE_DATA_DIRECTORY
+chown -R www-data:www-data $MOODLE_DATA_DIRECTORY
 
 # Descargamos WP-CLI
 wget https://github.com/moodle/moodle/archive/refs/tags/v4.3.1.zip -P /tmp
-
-# Eliminamos instalaciones previas de Moodle en /var/www/html
-rm -rf $MOODLE_DIRECTORY/*
 
 # Instalamos unzip
 apt install unzip -y
@@ -32,13 +36,8 @@ mv /tmp/moodle-4.3.1/* $MOODLE_DIRECTORY
 # Eliminamos el zip porque ya lo hemos descomprimido
 rm -rf $MOODLE_DIRECTORY/v4.3.1.zip 
 
-# Damos permisos al directorio donde instalaremos Moodle
-chown -R root $MOODLE_DIRECTORY
-chmod -R 0755 $MOODLE_DIRECTORY
-
 # Creamos el directorio donde guardaremos el Moodle Data
 mkdir -p $MOODLE_DATA_DIRECTORY
-chmod 0777 $MOODLE_DATA_DIRECTORY
 
 # Instalación de Moodle con CLI
 sudo -u www-data php $MOODLE_DIRECTORY/admin/cli/install.php \
