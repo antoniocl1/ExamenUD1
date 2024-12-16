@@ -16,12 +16,12 @@ sed -i "s/;max_input_vars = 1000/max_input_vars = 5000/" /etc/php/8.3/cli/php.in
 # Eliminamos descargas previas de Moodle
 rm -rf /tmp/v4.3.1.zip*
 rm -rf $MOODLE_DIRECTORY/*
-rm -rf $MOODLE_DATA_DIRECTORY*
+rm -rf $MOODLE_DATA_DIRECTORY/*
 
 # Cambiamos el propietario y el grupo al directorio /var/www/html/ y moodledata
-chown -R www-data:www-data $MOODLE_DIRECTORY
-chown -R 755 $MOODLE_DATA_DIRECTORY
-chown -R www-data:www-data $MOODLE_DATA_DIRECTORY
+# chown -R www-data:www-data $MOODLE_DIRECTORY
+# chmod -R 755 $MOODLE_DIRECTORY
+# chown -R www-data:www-data $MOODLE_DATA_DIRECTORY
 
 # Descargamos WP-CLI
 wget https://github.com/moodle/moodle/archive/refs/tags/v4.3.1.zip -P /tmp
@@ -59,7 +59,10 @@ sudo -u www-data php $MOODLE_DIRECTORY/admin/cli/install.php \
   --agree-license
 
 # Configuramos proxy inverso con sed
-set -i "/\$CFG->admin/a \$CFG->reverseproxy=1;\n\$CFG->sslproxy=1;" /var/www/html/config.php
+sed -i "/\$CFG->admin/a \$CFG->reverseproxy=1;\n\$CFG->sslproxy=1;" /var/www/html/config.php
 
 # Modificamos el propietario
 chown -R www-data:www-data $MOODLE_DIRECTORY
+chmod -R 755 $MOODLE_DIRECTORY
+chown -R www-data:www-data $MOODLE_DATA_DIRECTORY
+chmod -R 755 $MOODLE_DATA_DIRECTORY
