@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Para mostrar los comandos que se van ejecutando
 set -ex
 
@@ -11,6 +10,8 @@ source .env
 
 # Actualizamos los paquetes
 apt upgrade -y
+
+
 
 # Instalamos mysql server
 apt install mysql-server -y
