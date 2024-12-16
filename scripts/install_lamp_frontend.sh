@@ -27,8 +27,11 @@ systemctl restart apache2
 # Copiamos el script de Prueba de PHP en /var/www/html
 cp ../php/index.php /var/www/html
 
+# Modificamos el propietario y el grupo del archivo index.php
+chown -R www-data:www-data /var/www/html
+
 # Creamos el directorio de datos de moodle
 mkdir -p /var/moodledata
 
-# Modificamos el propietario y el grupo del archivo index.php
-chown -R www-data:www-data /var/www/html
+# Modificamos el propietario de moodledata
+chown -R www-data:www-data /var/moodledata

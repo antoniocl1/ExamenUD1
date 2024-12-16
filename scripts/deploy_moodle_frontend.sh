@@ -6,39 +6,32 @@ set -ex
 # Importamos el archivo de variables
 source .env
 
-# modulo para reescribir
-a2enmod rewrite
+# Instalamos unzip
+apt install unzip -y
 
 # Eliminamos descargas previas de Moodle
 rm -rf /tmp/v4.3.1.zip*
-rm -rf $MOODLE_DIRECTORY/*
-rm -rf $MOODLE_DATA_DIRECTORY/*
-
-# Creamos el directorio donde guardaremos el Moodle Data
-mkdir -p $MOODLE_DATA_DIRECTORY
+rm -rf /var/www/html/*
+rm -rf /var/moodledata/*
 
 # Cambiamos propietario y grupo
-sudo chown -R www-data:www-data $MOODLE_DIRECTORY
-sudo chmod -R 755 $MOODLE_DIRECTORY
-sudo chown -R www-data:www-data $MOODLE_DATA_DIRECTORY
-sudo chmod -R 755 $MOODLE_DATA_DIRECTORY
+sudo chown -R www-data:www-data /var/www/html
+sudo chmod -R 755 /var/www/html
+sudo chown -R www-data:www-data /var/www/html
+sudo chmod -R 755 /var/moodledata
 
 # Configurar parametro max_input_vars
 sed -i "s/;max_input_vars = 1000/max_input_vars = 5000/" /etc/php/8.3/apache2/php.ini
 sed -i "s/;max_input_vars = 1000/max_input_vars = 5000/" /etc/php/8.3/cli/php.ini
 
-# Descargamos WP-CLI
+# Descargamos Moodle
 wget https://github.com/moodle/moodle/archive/refs/tags/v4.3.1.zip -P /tmp
-
-# Instalamos unzip
-apt install unzip -y
-
 
 # Descomprimo el zip y lo muevo
 unzip /tmp/v4.3.1.zip -d /tmp
 mv /tmp/moodle-4.3.1/* $MOODLE_DIRECTORY
 # Eliminamos el zip porque ya lo hemos descomprimido
-# rm -rf $MOODLE_DIRECTORY/v4.3.1.zip 
+# rm -rf $MOODLE_DIRECTORY/v4.3.1.zip (lo comento por si acaso me está generando error pero lo dudo bastante)
 
 # Instalación de Moodle con CLI
 sudo -u www-data php $MOODLE_DIRECTORY/admin/cli/install.php \
