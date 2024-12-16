@@ -14,13 +14,10 @@ sed -i "s/;max_input_vars = 1000/max_input_vars = 5000/" /etc/php/8.3/apache2/ph
 sed -i "s/;max_input_vars = 1000/max_input_vars = 5000/" /etc/php/8.3/cli/php.ini
 
 # Eliminamos descargas previas de Moodle
-rm -rf /tmp/moodle-4.3.1.zip*
+rm -rf /tmp/v4.3.1.zip*
 
 # Descargamos WP-CLI
 wget https://github.com/moodle/moodle/archive/refs/tags/v4.3.1.zip -P /tmp
-
-# Damos permisos de ejecucióna WP-CLI
-chmod +x /tmp/v4.3.1.zip
 
 # Eliminamos instalaciones previas de Moodle en /var/www/html
 rm -rf $MOODLE_DIRECTORY/*
@@ -28,13 +25,12 @@ rm -rf $MOODLE_DIRECTORY/*
 # Instalamos unzip
 apt install unzip -y
 
-# Descomprimimos el zip a /var/www/html
+# Descomprimimos el zip y lo movemos a /var/www/html
 unzip /tmp/v4.3.1.zip -d /tmp
-
 mv /tmp/moodle-4.3.1/* $MOODLE_DIRECTORY
 
 # Eliminamos el zip porque ya lo hemos descomprimido
-rm -rf /$MOODLE_DIRECTORY/v4.3.1.zip 
+rm -rf $MOODLE_DIRECTORY/v4.3.1.zip 
 
 # Damos permisos al directorio donde instalaremos Moodle
 chown -R root $MOODLE_DIRECTORY
@@ -54,11 +50,11 @@ sudo -u www-data php $MOODLE_DIRECTORY/admin/cli/install.php \
   --dbname=$MOODLE_DB_NAME \
   --dbuser=$MOODLE_DB_USER \
   --dbpass=$MOODLE_DB_PASS \
-  --fullname=$MOODLE_FULLNAME \
-  --shortname=$MOODLE_SHORTNAME \
-  --summary=$MOODLE_SUMMARY \
-  --admin-user=$MOODLE_ADMIN_USER \
-  --admin-pass=$MOODLE_ADMIN_PASS \
+  --fullname="$MOODLE_FULLNAME" \
+  --shortname="$MOODLE_SHORTNAME" \
+  --summary="$MOODLE_SUMMARY" \
+  --adminuser=$MOODLE_ADMIN_USER \
+  --adminpass=$MOODLE_ADMIN_PASS \
   --adminemail=$MOODLE_ADMIN_EMAIL \
   --non-interactive \
   --agree-license
