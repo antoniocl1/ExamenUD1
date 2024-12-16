@@ -1,1 +1,2 @@
 MOODLE_DIRECTORY FRONTEND_IP_RANGE(rw,sync,no_root_squash,no_subtree_check)
+MOODLE_DATA_DIRECTORY FRONTEND_IP_RANGE(rw,sync,no_root_squash,no_subtree_check)
