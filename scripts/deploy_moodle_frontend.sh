@@ -38,7 +38,7 @@ apt install unzip -y
 unzip /tmp/v4.3.1.zip -d /tmp
 mv /tmp/moodle-4.3.1/* $MOODLE_DIRECTORY
 # Eliminamos el zip porque ya lo hemos descomprimido
-rm -rf $MOODLE_DIRECTORY/v4.3.1.zip 
+# rm -rf $MOODLE_DIRECTORY/v4.3.1.zip 
 
 # Instalación de Moodle con CLI
 sudo -u www-data php $MOODLE_DIRECTORY/admin/cli/install.php \
