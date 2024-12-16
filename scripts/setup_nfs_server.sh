@@ -21,7 +21,7 @@ mkdir -p $MOODLE_DIRECTORY
 sudo chown nobody:nogroup $MOODLE_DIRECTORY
 
 # Copiamos nuestro exports personalizado a /etc/exports
-cp ../exports /etc/exports
+cp ../exports/exports /etc/exports
 
 # Reemplazamos el valor de la plantilla de /etc/exports
 sed -i "s#CLIENT_IP#$CLIENT_IP#" /etc/exports
