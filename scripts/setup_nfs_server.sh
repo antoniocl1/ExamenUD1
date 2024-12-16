@@ -16,7 +16,7 @@ apt install nfs-kernel-server -y
 
 # Creamos el directorio
 mkdir -p $MOODLE_DIRECTORY
-
+mkdir -p $MOODLE_DATA_DIRECTORY
 # Le quitamos el dueño al dirextorio
 sudo chown nobody:nogroup $MOODLE_DIRECTORY
 
