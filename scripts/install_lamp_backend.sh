@@ -11,8 +11,6 @@ source .env
 # Actualizamos los paquetes
 apt upgrade -y
 
-
-
 # Instalamos mysql server
 apt install mysql-server -y
 
