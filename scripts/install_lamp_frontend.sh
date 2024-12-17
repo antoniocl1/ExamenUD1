@@ -28,7 +28,7 @@ systemctl restart apache2
 cp ../php/index.php /var/www/html
 
 # Modificamos el propietario y el grupo del archivo index.php
-# chown -R www-data:www-data /var/www/html (No entiendo por qué se me queda parado aquí si lo tengo sin comentar)
+chown -R www-data:www-data /var/www/html #(No entiendo por qué se me queda parado aquí si lo tengo sin comentar)
 
 # Creamos el directorio de datos de moodle
 mkdir -p /var/moodledata
