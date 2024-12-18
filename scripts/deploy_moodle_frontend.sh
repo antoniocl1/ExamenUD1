@@ -14,7 +14,7 @@ rm -rf /tmp/v4.3.1.zip
 rm -rf /var/www/html/*
 rm -rf /var/moodledata/*
 
-# Creo carpeta moodledata (intento)
+# Creo carpeta moodledata (por si acaso)
 sudo mkdir -p /var/moodledata
 
 # Configurar parametro max_input_vars
